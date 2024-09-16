@@ -62,6 +62,7 @@ app:
 embed:
   ekey: ActiveInteigence
   tokenKey: H0WWWrNDCCoVKVPXMSei9/+rDJcLbgkEOXhayw790lY=
+  iscustomtoken: false
   
   
 # Token used for MicroServices Internal Authentication 
