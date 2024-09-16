@@ -61,7 +61,8 @@ app:
 # tokenKey -> For generating Embed authentication token
 embed:
   ekey: ActiveInteigence
-  tokenKey: H0WWWrNDCCoVKVPXMSei9/+rDJcLbgkEOXhayw790lY=  
+  tokenKey: H0WWWrNDCCoVKVPXMSei9/+rDJcLbgkEOXhayw790lY=
+  iscustomtoken: false
   
 # Token used for MicroServices Internal Authentication 
 aiv-internalToken: ActiveIntelligence
