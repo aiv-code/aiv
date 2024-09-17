@@ -18,7 +18,7 @@ First, you need to install PostgreSQL. Use the appropriate instructions based on
 
 Once that is done, open `install.bat` on Windows or `install.sh` on Linux, and update the following variables accordingly. For example:
 
-### Note: Make sure aiv_jdbc_url value is set without schema name as it needs to setup some tables in public schema
+Note: Make sure aiv_jdbc_url value is set without schema name as it needs to setup some tables in public schema
 
 ```bash
 set aiv_port=8080
