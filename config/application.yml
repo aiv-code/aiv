@@ -64,6 +64,9 @@ embed:
   tokenKey: H0WWWrNDCCoVKVPXMSei9/+rDJcLbgkEOXhayw790lY=
   iscustomtoken: false
   
+logging:
+  level:
+    liquibase: OFF
   
 # Token used for MicroServices Internal Authentication 
 aiv-internalToken: ActiveIntelligence
