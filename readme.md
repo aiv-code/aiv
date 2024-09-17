@@ -2,7 +2,7 @@
 
 Follow these steps to install and configure the application.
 
-### 1. Install Java 17 and set it as Default JAVA_HOME
+### 1. Install Java 17 or above and set it as Default JAVA_HOME
 
 ### 2. Install PostgreSQL
 
