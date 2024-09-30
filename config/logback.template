@@ -58,10 +58,6 @@
         <appender-ref ref="DATA-FILE-ROLLING"/>
     </logger>
 
-    <!-- ... (repeat similar changes for other loggers) -->
-
-    <!--ROOT-->
-
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
