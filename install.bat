@@ -24,7 +24,7 @@ set "aiv_base=%aiv_base:\=/%"
 set "temp_file=%CD%\config\temp.yml"
 
 :: Read the application.yml file and replace placeholders
-(for /f "delims=" %%i in (%original_file%) do (
+(for /f "delims=" %%i in ('type "%original_file%"') do (
     set "line=%%i"
     set "line=!line:${aiv_port}=%aiv_port%!"
     set "line=!line:${aiv_db_url}=%aiv_db_url%!"
@@ -35,19 +35,19 @@ set "temp_file=%CD%\config\temp.yml"
     set "line=!line:${security_db_password}=%security_db_password%!"
     set "line=!line:${aiv_base}=%aiv_base%!"
     echo !line!
-)) > %temp_file%
+)) > "%temp_file%"
+
 
 :: Move the temporary file to the new file
-move /y %temp_file% %new_file%
-
+move /y "%temp_file%" "%new_file%"
 
 :: Read the application.yml file and replace placeholders
-(for /f "delims=" %%i in (%aiv_logback_file%) do (
+(for /f "delims=" %%i in ('type "%aiv_logback_file%"') do (
     set "line=%%i"
     set "line=!line:${aiv_base}=%aiv_base%!"
     echo !line!
-)) > %temp_file%
+)) > "%temp_file%"
 
-move /y %temp_file% %aiv_logback_new_file%
+move /y "%temp_file%" "%aiv_logback_new_file%"
 
 echo Variables replaced and written to %new_file% and %aiv_logback_new_file% 
