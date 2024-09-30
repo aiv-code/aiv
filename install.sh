@@ -8,21 +8,14 @@ aiv_db_password="aivpassword"
 security_db_url="jdbc:postgresql://localhost:5432?currentSchema=security"
 security_db_user="security"
 security_db_password="securitypassword"
-jira_db_url="jdbc:postgresql://localhost:5432?currentSchema=jira"
-jira_db_user="jira"
-jira_db_password="jirapassword"
-atlassian_url="https://app.atlassian.net"
-addon_base_url="http://localhost:8080/aiv"
 aiv_base="$(pwd)"
 
 # Set file paths
 original_file="$aiv_base/config/application.template"
 aiv_logback_file="$aiv_base/config/logback.template"
-jira_logback_file="$aiv_base/config/logback_jira.template"
 
 new_file="$aiv_base/config/application.yml"
 aiv_logback_new_file="$aiv_base/config/logback.xml"
-jira_logback_new_file="$aiv_base/config/logback_jira.xml"
 
 # Convert backslashes to forward slashes in aiv_base (for Unix-style paths)
 aiv_base="${aiv_base//\\//}"
@@ -39,11 +32,7 @@ while IFS= read -r line; do
     line="${line//\$\{security_db_url\}/$security_db_url}"
     line="${line//\$\{security_db_user\}/$security_db_user}"
     line="${line//\$\{security_db_password\}/$security_db_password}"
-    line="${line//\$\{jira_db_url\}/$jira_db_url}"
-    line="${line//\$\{jira_db_user\}/$jira_db_user}"
-    line="${line//\$\{jira_db_password\}/$jira_db_password}"
     line="${line//\$\{aiv_base\}/$aiv_base}"
-    line="${line//\$\{atlassian_url\}/$atlassian_url}"
     echo "$line"
 done < "$original_file" > "$temp_file"
 
@@ -58,12 +47,4 @@ done < "$aiv_logback_file" > "$temp_file"
 
 mv "$temp_file" "$aiv_logback_new_file"
 
-# Replace placeholders in jira_logback_file and write to jira_logback_new_file
-while IFS= read -r line; do
-    line="${line//\$\{aiv_base\}/$aiv_base}"
-    echo "$line"
-done < "$jira_logback_file" > "$temp_file"
-
-mv "$temp_file" "$jira_logback_new_file"
-
-echo "Variables replaced and written to $new_file, $aiv_logback_new_file, and $jira_logback_new_file"
+echo "Variables replaced and written to $new_file and $aiv_logback_new_file"
