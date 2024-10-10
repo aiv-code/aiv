@@ -2,10 +2,10 @@
 
 # Set the variables
 aiv_port=8080
-aiv_db_url="jdbc:postgresql://localhost:5432?currentSchema=aiv"
+aiv_db_url="jdbc:postgresql://localhost:5432/aiv"
 aiv_db_user="aiv"
 aiv_db_password="aivpassword"
-security_db_url="jdbc:postgresql://localhost:5432?currentSchema=security"
+security_db_url="jdbc:postgresql://localhost:5432/aiv?currentSchema=security"
 security_db_user="security"
 security_db_password="securitypassword"
 aiv_base="$(pwd)"
