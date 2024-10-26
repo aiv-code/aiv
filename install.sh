@@ -3,11 +3,11 @@
 # Set the variables
 aiv_port=8080
 aiv_db_url="jdbc:postgresql://localhost:5432/aiv"
-aiv_db_user="aiv"
-aiv_db_password="aivpassword"
+aiv_db_user="postgres"
+aiv_db_password="root"
 security_db_url="jdbc:postgresql://localhost:5432/aiv?currentSchema=security"
-security_db_user="security"
-security_db_password="securitypassword"
+security_db_user="postgres"
+security_db_password="root"
 aiv_base="$(pwd)"
 
 # Set file paths
@@ -24,27 +24,18 @@ aiv_base="${aiv_base//\\//}"
 temp_file="$aiv_base/config/temp.yml"
 
 # Replace placeholders in the application template and write to new_file
-while IFS= read -r line; do
-    line="${line//\$\{aiv_port\}/$aiv_port}"
-    line="${line//\$\{aiv_db_url\}/$aiv_db_url}"
-    line="${line//\$\{aiv_db_user\}/$aiv_db_user}"
-    line="${line//\$\{aiv_db_password\}/$aiv_db_password}"
-    line="${line//\$\{security_db_url\}/$security_db_url}"
-    line="${line//\$\{security_db_user\}/$security_db_user}"
-    line="${line//\$\{security_db_password\}/$security_db_password}"
-    line="${line//\$\{aiv_base\}/$aiv_base}"
-    echo "$line"
-done < "$original_file" > "$temp_file"
-
-# Move the temporary file to new_file
-mv "$temp_file" "$new_file"
+cp $original_file $new_file
+sed -e "s|\${aiv_port}|$aiv_port|" -i $new_file
+sed -e "s|\${aiv_db_url}|$aiv_db_url|" -i $new_file
+sed -e "s|\${aiv_db_user}|$aiv_db_user|" -i $new_file
+sed -e "s|\${aiv_db_password|$aiv_db_password|" -i $new_file
+sed -e "s|\${security_db_url}|$security_db_url|" -i $new_file
+sed -e "s|\${security_db_user}|$security_db_user|" -i $new_file
+sed -e "s|\${security_db_password}|$security_db_passwor|" -i $new_file
+sed -e "s|\${aiv_base}|$aiv_base|" -i $new_file
 
 # Replace placeholders in aiv_logback_file and write to aiv_logback_new_file
-while IFS= read -r line; do
-    line="${line//\$\{aiv_base\}/$aiv_base}"
-    echo "$line"
-done < "$aiv_logback_file" > "$temp_file"
-
-mv "$temp_file" "$aiv_logback_new_file"
+cp $aiv_logback_file $aiv_logback_new_file
+sed -e "s|\${aiv_base}|$aiv_base|" -i $aiv_logback_new_file
 
 echo "Variables replaced and written to $new_file and $aiv_logback_new_file"
