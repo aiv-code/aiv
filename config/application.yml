@@ -56,7 +56,7 @@ app:
   securityClass: com.security.services.SimpleAuthImpl #com.simple.services.SimpleAuthImpl/com.utility.JiraAuthImpl
   isJira: false
   logs:
-    jsonlogs: true
+    jsonlogs: false
     showdept: true
     showtraceid: true
 
