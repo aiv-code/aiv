@@ -8,6 +8,7 @@ aiv_db_password="root"
 security_db_url="jdbc:postgresql://localhost:5432/aiv?currentSchema=security"
 security_db_user="postgres"
 security_db_password="root"
+aiv_logs="$(pwd)\logs"
 aiv_base="$(pwd)"
 
 # Set file paths
@@ -35,7 +36,17 @@ sed -e "s|\${security_db_password}|$security_db_passwor|" -i $new_file
 sed -e "s|\${aiv_base}|$aiv_base|" -i $new_file
 
 # Replace placeholders in aiv_logback_file and write to aiv_logback_new_file
+#cp $aiv_logback_file $aiv_logback_new_file
+#sed -e "s|\${aiv_base}|$aiv_base|" -i $aiv_logback_new_file
+
+# Convert backslashes to forward slashes in aiv_base (for Unix-style paths)
+aiv_logs="${aiv_logs//\\//}"
+
+# Create a temporary file for processing
+temp_file1="$aiv_base/config/temp1.xml"
+
+# Replace placeholders in the application template and write to new_file
 cp $aiv_logback_file $aiv_logback_new_file
-sed -e "s|\${aiv_base}|$aiv_base|" -i $aiv_logback_new_file
+sed -e "s|\${aiv_logs}|$aiv_logs|" -i $aiv_logback_new_file
 
 echo "Variables replaced and written to $new_file and $aiv_logback_new_file"
