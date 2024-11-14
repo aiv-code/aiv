@@ -69,7 +69,15 @@ Before proceeding, ensure you have the following installed and configured on you
     ```bash
     psql --version
     ```
-
+4. **Create database aiv inside postgresSQL**:
+   ```bash
+   psql -U postgres
+   ```
+   Enter the password if prompted. This connects you to the PostgreSQL server.
+   
+   ```bash
+   CREATE DATABASE aiv;
+   ```
 ---
 
 ## Step 3: Download and Install the AIV6 Application
@@ -87,11 +95,11 @@ To configure the installation, you'll need to update specific fields in the `ins
 
     ```bash
     # Set the variables
-    aiv_db_url="jdbc:postgresql://localhost:5432/aiv6"
+    aiv_db_url="jdbc:postgresql://localhost:5432/aiv"
     aiv_db_user="postgres"
     aiv_db_password="xy6ffnVb\$qNf7pYz8T"
     
-    security_db_url="jdbc:postgresql://localhost:5432/aiv6?currentSchema=security"
+    security_db_url="jdbc:postgresql://localhost:5432/aiv?currentSchema=security"
     security_db_user="postgres"
     security_db_password="xy6ffnVb\$qNf7pYz8T"
     ```
